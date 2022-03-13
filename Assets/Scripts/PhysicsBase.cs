@@ -37,7 +37,9 @@ public class PhysicsBase : MonoBehaviour
     public void Update()
     {
         m_curFrameVelocity = m_rigidbody.velocity;
-        if (m_curFrameVelocity.y == 0 && m_lastFrameVelocity.y < 0)//ÂäµØ
+        if (m_curFrameVelocity.magnitude < 0.01f)
+            m_curFrameVelocity = Vector2.zero;
+        if (m_curFrameVelocity.y == 0f && m_lastFrameVelocity.y < 0f)//ÂäµØ
             OnGround();
 
         UpdateGravity();

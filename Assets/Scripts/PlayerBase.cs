@@ -53,5 +53,11 @@ public class PlayerBase : PhysicsBase
     private void Dead()
     {
         Debug.Log("นามหฃก");
+        SavePoint.CurSavePoint?.Revive(this);
+    }
+
+    public void Revive()
+    {
+
     }
 }

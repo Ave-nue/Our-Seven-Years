@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goal : MonoBehaviour
+public class Goal : PhysicsBase
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject coach;
+    public GameObject goalkeeper;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        Soccer soccer = collision.GetComponent<Soccer>();
+        if (soccer)
+        {
+            coach?.SetActive(false);
+            goalkeeper?.SetActive(false);
+            //Debug.Log("½øÇòÀ²£¡");
+        }
     }
 }

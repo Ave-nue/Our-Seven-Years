@@ -13,6 +13,9 @@ public class Soccer : PhysicsBase
         PlayerBase player = collision.collider.GetComponent<PlayerBase>();
         if (player)// && (player.CurVelocity.x * (m_rigidbody.position.x - player.transform.position.x)) > 0)
         {
+            if (player.soccer)
+                player.soccer.KickOut();
+
             ballHandler = player;
             player.soccer = this;
             GetComponent<Collider2D>().isTrigger = true;
