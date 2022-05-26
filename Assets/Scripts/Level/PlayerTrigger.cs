@@ -10,6 +10,16 @@ public class PlayerTrigger : MonoBehaviour
 
     private int m_usedCount;
 
+    void Start()
+    {
+        EventManager.Instance.AddListener("PlayerRevive", Restore);
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Instance.SubListener("PlayerRevive", Restore);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PlayerBase player = collision.GetComponent<PlayerBase>();
@@ -27,5 +37,10 @@ public class PlayerTrigger : MonoBehaviour
         todo.Invoke();
 
         m_usedCount++;
+    }
+
+    public void Restore()
+    {
+        m_usedCount = 0;
     }
 }

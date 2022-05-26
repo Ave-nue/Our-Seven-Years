@@ -58,6 +58,6 @@ public class PlayerBase : PhysicsBase
 
     public void Revive()
     {
-
+        EventManager.Instance.Trigger("PlayerRevive");
     }
 }

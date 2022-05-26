@@ -21,6 +21,10 @@ public class CameraTarget : MonoBehaviour
             if (item.CompareTag("Confiner") && m_curConfiner != item)
                 m_curConfiner = item;
         }
+
+        for (int i = 0; i < m_checkCache.Length; i++)
+            m_checkCache[i] = null;
+
         if (m_curConfiner && m_curConfiner != targetCameraConfiner.m_BoundingShape2D)
             targetCameraConfiner.m_BoundingShape2D = m_curConfiner;
     }
