@@ -5,13 +5,28 @@ using UnityEngine;
 public class AirCraft : MonoBehaviour
 {
     public GameObject bullet;
+    public SpriteRenderer spriteR;
+    public Sprite flySprite;
 
     private int m_curOffset;
     private float m_attackCD;
+    private bool m_isFly;
+
+    private void Awake()
+    {
+        EventManager.Instance.AddListener("PlayerController_Left_Down", GoLeft);
+        EventManager.Instance.AddListener("PlayerController_Right_Down", GoRight);
+    }
 
     void Start()
     {
-        
+        //Fly();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.Instance.SubListener("PlayerController_Left_Down", GoLeft);
+        EventManager.Instance.SubListener("PlayerController_Right_Down", GoRight);
     }
 
     void Update()
@@ -38,6 +53,16 @@ public class AirCraft : MonoBehaviour
         transform.position = curPos;
     }
 
+    public void GoLeft()
+    {
+        Move(-1);
+    }
+
+    public void GoRight()
+    {
+        Move(1);
+    }
+
     public void Move(int offset)
     {
         m_curOffset += offset;
@@ -50,5 +75,17 @@ public class AirCraft : MonoBehaviour
     public void Attack()
     {
         Instantiate(bullet, transform.position, Quaternion.identity);
+
+        if (m_isFly)
+        {
+            Instantiate(bullet, transform.position + Vector3.left, Quaternion.identity);
+            Instantiate(bullet, transform.position + Vector3.right, Quaternion.identity);
+        }
+    }
+
+    public void Fly()
+    {
+        m_isFly = true;
+        spriteR.sprite = flySprite;
     }
 }

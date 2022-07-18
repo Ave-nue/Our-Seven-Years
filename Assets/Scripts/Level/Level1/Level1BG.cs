@@ -6,6 +6,7 @@ public class Level1BG : MonoBehaviour
 {
     public SpriteRenderer bg;
     public Transform player;
+    public float startX;
     public float targetX;
 
     private float m_initialAlpha;
@@ -19,6 +20,6 @@ public class Level1BG : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, m_initialAlpha + (1 - m_initialAlpha) * (player.position.x / targetX));
+        bg.color = new Color(bg.color.r, bg.color.g, bg.color.b, m_initialAlpha + (1 - m_initialAlpha) * ((player.position.x - startX) / (targetX - startX)));
     }
 }

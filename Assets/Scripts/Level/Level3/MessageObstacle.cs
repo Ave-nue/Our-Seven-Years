@@ -14,6 +14,9 @@ public class MessageObstacle : MonoBehaviour
 
     private void Update()
     {
+        if (Input.touchCount < 2)
+            return;
+
         //获取第二根手指的手势
         Touch curTouch = Input.GetTouch(1);
         switch (curTouch.phase)
@@ -38,15 +41,15 @@ public class MessageObstacle : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        MessageBall ball = collision.GetComponent<MessageBall>();
-        if (ball)
-            Destroy(gameObject);
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    MessageBall ball = collision.GetComponent<MessageBall>();
+    //    if (ball)
+    //        Destroy(gameObject);
+    //}
 
-    private void OnDestroy()
-    {
-        Debug.Log("Check to Win");
-    }
+    //private void OnDestroy()
+    //{
+    //    Debug.Log("Check to Win");
+    //}
 }

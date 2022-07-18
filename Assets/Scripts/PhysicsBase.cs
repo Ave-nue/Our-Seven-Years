@@ -74,7 +74,9 @@ public class PhysicsBase : MonoBehaviour
         if (m_remainJumpCount <= 0)
             return;
 
-        m_curFrameVelocity.y = jumpSpeed;
+        Vector2 newVelocity = m_rigidbody.velocity;
+        newVelocity.y = jumpSpeed;
+        m_rigidbody.velocity = newVelocity;
         m_remainJumpCount--;
     }
 

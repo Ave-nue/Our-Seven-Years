@@ -39,7 +39,7 @@ public class MyPhone : MonoBehaviour
         MessageBall ball = collision.collider.GetComponent<MessageBall>();
         if (ball)
         {
-            ball.Reflect(1, m_curVV);
+            ball.Reflect(3, m_curVV);
         }
     }
 }
